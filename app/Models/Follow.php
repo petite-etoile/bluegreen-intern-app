@@ -18,4 +18,6 @@ class Follow extends Model
     //     'followed_user_id',
     //     'following_user_id',
     // ];
+
+    protected $connection = 'mysql';
 }

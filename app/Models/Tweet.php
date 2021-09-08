@@ -19,4 +19,6 @@ class Tweet extends Model
         // 'user_id',
         // 'root_tweet_id',
     ];
+    
+    protected $connection = 'mysql';
 }
