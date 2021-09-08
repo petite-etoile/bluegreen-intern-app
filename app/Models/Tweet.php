@@ -17,6 +17,4 @@ class Tweet extends Model
     protected $fillable = [
         'tweet_text',
     ];
-    
-    protected $connection = 'mysql';
 }

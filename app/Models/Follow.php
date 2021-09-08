@@ -9,5 +9,4 @@ class Follow extends Model
 {
     use HasFactory;
 
-    protected $connection = 'mysql';
 }
