@@ -17,7 +17,7 @@ class CreateTweetsTable extends Migration
             $table->id();
             $table->string("tweet_text")->comment("ツイート文");
             $table->unsignedBigInteger('user_id')->comment("ツイートした人のID");
-            $table->unsignedBigInteger('root_tweet_id')->comment("リプライ先のツイート(リプライでなければ, 自身のID)");
+            $table->unsignedBigInteger('root_tweet_id')->comment("リプライ先のツイートのID(リプライでなければ, 自身のID)");
             $table->timestamp('created_at');
 
             $table->foreign('user_id')->references('id')->on('users');
