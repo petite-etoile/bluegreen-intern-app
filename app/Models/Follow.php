@@ -9,15 +9,5 @@ class Follow extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    // protected $fillable = [
-    //     'followed_user_id',
-    //     'following_user_id',
-    // ];
-
     protected $connection = 'mysql';
 }
