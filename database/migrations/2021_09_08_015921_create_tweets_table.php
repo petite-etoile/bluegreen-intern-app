@@ -15,9 +15,9 @@ class CreateTweetsTable extends Migration
     {
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
-            $table->string("tweet_text");
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('root_tweet_id');
+            $table->string("tweet_text")->comment("ツイート文");
+            $table->unsignedBigInteger('user_id')->comment("ツイートした人のID");
+            $table->unsignedBigInteger('root_tweet_id')->comment("リプライ先のツイート(リプライでなければ, 自身のID)");
             $table->timestamp('created_at');
 
             $table->foreign('user_id')->references('id')->on('users');

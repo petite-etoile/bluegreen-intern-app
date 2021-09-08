@@ -14,10 +14,11 @@ class CreateLikesTable extends Migration
     public function up()
     {
         Schema::create('likes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('tweet_id');
+            $table->unsignedBigInteger('user_id')->comment("LIKEした人のID");
+            $table->unsignedBigInteger('tweet_id')->comment("LIKEされたツイートのID");
             $table->timestamps();
+
+            $table->primary(['user_id', 'tweet_id']);
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('tweet_id')->references('id')->on('tweets');
