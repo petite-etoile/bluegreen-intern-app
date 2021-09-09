@@ -25,7 +25,7 @@
     <body>
         <div class="container">
             <h2>ツイートを入力</h2>
-            <form action="/send-tweet" method="POST">
+            <form action="/tweet-form" method="POST">
                 @csrf
                 <textarea name="tweet_text" rows="4" cols="40" placeholder="ねぇ今どんな気持ち？"></textarea>
                 <br>
