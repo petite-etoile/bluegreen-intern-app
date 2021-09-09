@@ -16,13 +16,6 @@ class TweetFactory extends Factory
     protected $model = Tweet::class;
     
     /**
-     * The counter of tweet num
-     *
-     * @var integer
-     */
-    private static $tweet_counter = 1;
-
-    /**
      * Define the model's default state.
      *
      * @return array
