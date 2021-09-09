@@ -33,10 +33,9 @@ class TweetController extends Controller
         $tweet = Tweet::find( $request->id );
         $tweet->delete();
 
-        return $request->id;
         // FIX ME
         //
         // /home を作成したら, そこにリダイレクトさせる
-        // return redirect('/dashboard'); 
+        return redirect('/dashboard'); 
     }
 }
