@@ -17,14 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tweet-form', function () {
-    return view('tweet_form');
-})->middleware('auth');
 
-Route::post('/send-tweet', [TweetController::class, "add"])->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/tweet-form', function () {
+        return view('tweet_form');
+    });
+
+    Route::post('/send-tweet', [TweetController::class, "add"]);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';
