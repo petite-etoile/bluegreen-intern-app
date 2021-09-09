@@ -1,0 +1,15 @@
+
+.container{
+    background-color: #ddd;
+    width: 80%;
+    height: 1000px;
+    margin: 0 auto;
+    padding: 30px 30px;
+}
+
+.btn{
+    background-color: cyan;
+    padding:5px 10px;
+    border: solid black 1px;
+    font-size:medium;
+}

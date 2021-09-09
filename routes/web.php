@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TweetController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/tweet-form', function () {
+    return view('tweet_form');
+});
+
+Route::post('/send-tweet', [TweetController::class, "add"]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
