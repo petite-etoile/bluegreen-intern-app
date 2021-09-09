@@ -16,7 +16,10 @@ class TweetService{
 
     public static function delete_tweet($request){
         $tweet = Tweet::find( $request['id'] );
-        $tweet->delete();
+
+        if($tweet){
+            $tweet->delete();
+        }
 
         return $tweet;
     }

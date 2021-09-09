@@ -30,8 +30,9 @@ class TweetController extends Controller
     //ツイートを削除し, Homeにリダイレクトさせる
     public function delete(Request $request){
         
-        $tweet = Tweet::find( $request->id );
-        $tweet->delete();
+        $tweet = TweetService::delete_tweet([
+            'id' => $request->id, 
+        ]);
 
         // FIX ME
         //
