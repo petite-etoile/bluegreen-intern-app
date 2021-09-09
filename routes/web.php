@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 Route::get('/tweet-form', function () {
     return view('tweet_form');
-});
+})->middleware('auth');
 
-Route::post('/send-tweet', [TweetController::class, "add"]);
+Route::post('/send-tweet', [TweetController::class, "add"])->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
