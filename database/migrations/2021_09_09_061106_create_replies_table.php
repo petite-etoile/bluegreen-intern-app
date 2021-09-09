@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLikesTable extends Migration
+class CreateRepliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->comment("LIKEした人のID");
-            $table->unsignedBigInteger('tweet_id')->comment("LIKEされたツイートのID");
+        Schema::create('replies', function (Blueprint $table) {
+            $table->id();
+            $table->string('tweet_text')->comment('リプライ文');
+            $table->unsignedBigInteger('user_id')->comment('リプライした人のID');
+            $table->unsignedBigInteger('tweet_id')->comment('リプライ先のツイートのID');
             $table->timestamps();
-
-            $table->primary(['user_id', 'tweet_id']);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
             $table->foreign('tweet_id')->references('id')->on('tweets')->onDelete('cascade');;
@@ -32,6 +32,6 @@ class CreateLikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('likes');
+        Schema::dropIfExists('replies');
     }
 }
