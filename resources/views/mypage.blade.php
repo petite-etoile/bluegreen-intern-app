@@ -5,7 +5,7 @@
 
 @section('content')
 
-Mypage
-
+Mypage <br>
+id: {{ $me }}
 
 @endsection

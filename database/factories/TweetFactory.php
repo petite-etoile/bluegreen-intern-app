@@ -32,9 +32,10 @@ class TweetFactory extends Factory
         self::$user_id++;
         if(self::$user_id > User::count()){
             if(User::count() == 0){
-                User::factory()->create();
+                self::$user_id = User::factory()->create()->id;
+            }else{
+                self::$user_id = 1;
             }
-            self::$user_id = 1;
         }
         return [
             'tweet_text' => $this->faker->sentence,
