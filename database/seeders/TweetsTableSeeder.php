@@ -14,6 +14,6 @@ class TweetsTableSeeder extends Seeder
      */
     public function run()
     {
-        Tweet::factory()->count(100)->create();
+        Tweet::factory()->count(1000)->create();
     }
 }
