@@ -1,15 +1,32 @@
+body{
+    background-color: #CCFFFF;
+}
 
-.container{
-    background-color: #ddd;
+
+footer{
+    border-top: solid black 1px;
+    background-color: #eee;
+    height:50px;
+}
+
+.clear{
+    clear: both;
+}
+
+.wrapper{
+    background-color: white;
+    border-left: solid #33CCFF 1px;
+    border-right: solid #33CCFF 1px;
     width: 80%;
     height: 1000px;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     padding: 30px 30px;
 }
 
-.btn{
-    background-color: cyan;
-    padding:5px 10px;
-    border: solid black 1px;
-    font-size:medium;
+.float-right{
+    float:right;
+}
+
+.float-left{
+    float:left;
 }

@@ -21,10 +21,7 @@ class TweetController extends Controller
         ]);
 
 
-        // FIX ME
-        //
-        // /home を作成したら, そこにリダイレクトさせる
-        return redirect('/tweet-form'); 
+        return redirect('/home'); 
     }
 
     //ツイートを削除し, Homeにリダイレクトさせる
@@ -35,9 +32,12 @@ class TweetController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        // FIX ME
-        //
-        // /home を作成したら, そこにリダイレクトさせる
-        return redirect('/delete-form'); 
+        return redirect('/home'); 
+    }
+
+    //ツイートを削除し, Homeにリダイレクトさせる
+    public function index($page = '1'){
+
+        return view('home', ['page' => $page, 'path' => 'home']); 
     }
 }
