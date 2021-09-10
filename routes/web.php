@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/tweet-form', function () {
-        return view('tweet_form');
+        return view('tweet_form', ['path' => 'tweet-form']);
     });
 
     Route::post('/tweet-form', [TweetController::class, "add"]);
@@ -30,12 +30,24 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::delete('/delete-form', [TweetController::class, "delete"]);
+    
+    Route::get('/dashboard', function () {
+        return redirect('/home/1');
+    });
+
+    Route::get('/home/{page?}', [TweetController::class, "index"] );
+
+    Route::get('/mypage', function () {
+        return view('mypage', ['path' => 'mypage']);
+    });
+    
+    Route::get('/user-list', function () {
+        return view('user_list', ['path' => 'user-list']);
+    });
 
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
 
 
 require __DIR__.'/auth.php';
