@@ -97,6 +97,7 @@ class TweetTest extends TestCase
 
     }   
 
+    public const GET_MAX_TWEET_NUM = 10; //1ページの表示ツイート数上限
 
     /**
      * A unit test for listing tweets.
@@ -113,8 +114,7 @@ class TweetTest extends TestCase
         $followed_user_list = Follow::where('following_user_id', $user_id) -> get();
 
         $page = 2;
-        $tweets_num_upper_of_page = 10; //1ページの表示ツイート数上限
-        $skip_tweet_cnt = $tweets_num_upper_of_page * ($page - 1); //offsetする数
+        $skip_tweet_cnt = self::GET_MAX_TWEET_NUM * ($page - 1); //offsetする数
 
         $tweets = DB::table('tweets')
             ->join('follows', function ($join) use ($user_id){

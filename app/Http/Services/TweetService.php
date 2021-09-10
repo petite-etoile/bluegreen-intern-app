@@ -41,20 +41,20 @@ class TweetService{
     //      表示するツイート
     //          - user_idがフォローしているユーザのツイート
     //          - 自分のツイート
-    public static function get_tweets_at_page($request){
-        $tweets_num_upper_of_page = 10; //1ページの表示ツイート数上限
-        $skip_tweet_cnt = $tweets_num_upper_of_page * ($request['page'] - 1); //offsetする数
+    public const GET_MAX_TWEET_NUM = 10; //1ページの表示ツイート数上限
 
-        $tweets = DB::table('tweets')
+    public static function get_tweets_at_page($request){
+        $skip_tweet_cnt = self::GET_MAX_TWEET_NUM * ($request['page'] - 1); //offsetする数
+
+        return $tweets = DB::table('tweets')
             ->join('follows', function ($join) use ($request){
                 $join->on('tweets.user_id', '=', 'follows.followed_user_id')
                     ->where('follows.following_user_id', '=', $request['user_id']);
             })
             ->orderBy('id')
             ->skip($skip_tweet_cnt)
-            ->take($tweets_num_upper_of_page)
+            ->take(self::GET_MAX_TWEET_NUM)
             ->get();
 
-        return $tweets;
     }
 }
