@@ -134,5 +134,33 @@ class TweetTest extends TestCase
             $this->assertSame($tweets[$idx + $skip_tweet_cnt]->id, $listed_tweet[$idx]->id);
         }
     }
+
+    /**
+     * A unit test for getting page num.
+     *
+     * @return void
+     */
+    public function test_getting_page_num()
+    {
+        $user_id = 1;
+        $user = User::find($user_id);
+
+        $followed_user_list = Follow::where('following_user_id', $user_id) -> get();
+
+        $tweet_num = DB::table('tweets')
+            ->join('follows', function ($join) use ($user_id){
+                $join->on('tweets.user_id', '=', 'follows.followed_user_id')
+                    ->where('follows.following_user_id', '=', $user_id);
+            })
+            ->count();
+
+        $expected_page_num = ($tweet_num + self::GET_MAX_TWEET_NUM - 1) / self::GET_MAX_TWEET_NUM;
+
+        $gotten_page_num = TweetService::get_page_num([
+            'user_id' => $user_id,
+        ]);
+
+        $this->assertSame($expected_page_num, $gotten_page_num);
+    }
     
 }

@@ -46,3 +46,22 @@ footer{
 .tweet-date{
     
 }
+
+.link{
+    text-decoration: underline;
+}
+
+.page-btn{
+    height: 30px;
+    width: 30px;
+    border:solid black 1px;
+    float:left;
+    text-align:center;
+    cursor: pointer;
+}
+
+.page-btn-active{
+    background-color: black;
+    color:white;
+    font:bold;
+}

@@ -15,12 +15,20 @@
             <div class="tweet-date">{{ $tweet->created_at }}</div>
         </div>
     @empty
-        <p> フォロイーのツイートがありません. <a href="/user-list">こちら</a>でフォローしましょう！ </p>
+        <p style="margin-top:50px; font-size:30px;"> フォロイーのツイートがありません. <a class="link" href="/user-list">こちら</a>でフォローしましょう！ </p>
     @endforelse
 </div class="tweet-table">
 
+<div class="mt-3"></div>
 
+@for ($i = 1; $i < $page_num ; $i++)
+    <a class="pt-1 page-btn {{ $i==$page ? 'page-btn-active' : ''}}" href="/home/{{ $i }}">
+        {{ $i }}
+    </a>
+@endfor
+<div>
 
+</div>
 
 @endsection
 

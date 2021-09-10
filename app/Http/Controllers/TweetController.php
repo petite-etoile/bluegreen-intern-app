@@ -43,7 +43,11 @@ class TweetController extends Controller
             'page' => $page,
         ]);
 
-        return view('home', ['page' => $page, 'path' => 'home', 'tweets'=>$tweets]); 
+        $page_num = TweetService::get_page_num([
+            'user_id' => Auth::id(),
+        ]);
+
+        return view('home', ['page' => $page, 'path' => 'home', 'tweets'=>$tweets, 'page_num' => $page_num]); 
     }
 
     public function mypage(){
