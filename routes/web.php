@@ -30,12 +30,17 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::delete('/delete-form', [TweetController::class, "delete"]);
+    
+    Route::get('/dashboard', function () {
+        return redirect('/home');
+    });
+
+    Route::get('/home', [TweetController::class, "index"]);
+
 
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
 
 
 require __DIR__.'/auth.php';
