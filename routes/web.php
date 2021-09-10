@@ -25,6 +25,11 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/tweet-form', [TweetController::class, "add"]);
 
+    Route::get('/delete-form', function () {
+        return view('delete_form');
+    });
+
+    Route::delete('/delete-form', [TweetController::class, "delete"]);
 
 });
 

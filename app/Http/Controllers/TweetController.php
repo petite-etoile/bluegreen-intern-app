@@ -27,4 +27,16 @@ class TweetController extends Controller
         return redirect('/tweet-form'); 
     }
 
+    //ツイートを削除し, Homeにリダイレクトさせる
+    public function delete(Request $request){
+        
+        $tweet = TweetService::delete_tweet([
+            'id' => $request->id, 
+        ]);
+
+        // FIX ME
+        //
+        // /home を作成したら, そこにリダイレクトさせる
+        return redirect('/delete-form'); 
+    }
 }
