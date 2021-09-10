@@ -32,6 +32,7 @@ class TweetController extends Controller
         
         $tweet = TweetService::delete_tweet([
             'id' => $request->id, 
+            'user_id' => Auth::id(),
         ]);
 
         // FIX ME

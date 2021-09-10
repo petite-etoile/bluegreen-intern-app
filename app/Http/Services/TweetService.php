@@ -16,7 +16,7 @@ class TweetService{
 
     public static function delete_tweet($request){
         $tweet = Tweet::find($request['id']);
-        if($tweet){
+        if($tweet && $tweet->user_id==$request['user_id']){
             $tweet->delete();
         }
 
