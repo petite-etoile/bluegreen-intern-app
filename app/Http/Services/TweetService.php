@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 
 class TweetService{
-    
+
     // 引数
     //      tweet_textとuser_idをもつ連想配列
     // 動作
@@ -16,8 +16,8 @@ class TweetService{
     public static function create_tweet($request){
         $tweet = Tweet::create([
             'tweet_text' => $request['tweet_text'],
-            'user_id' => $request['user_id'],    
-        ]);   
+            'user_id' => $request['user_id'],
+        ]);
 
         return $tweet;
     }
