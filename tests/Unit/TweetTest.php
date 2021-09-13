@@ -17,7 +17,7 @@ class TweetTest extends TestCase
      *
      * @return void
      */
-    public function test_saving_tweet()
+    public function test_saving_tweet(): void
     {
         // テスト用データの用意
         $tweet = Tweet::factory()->make();
@@ -50,7 +50,7 @@ class TweetTest extends TestCase
      *
      * @return void
      */
-    public function test_deleting_tweet()
+    public function test_deleting_tweet(): void
     {
 
         // テスト用データの用意
@@ -95,7 +95,7 @@ class TweetTest extends TestCase
             'id' => $id,
         ]);
 
-    }   
+    }
 
     public const GET_MAX_TWEET_NUM = 10; //1ページの表示ツイート数上限
 
@@ -104,7 +104,7 @@ class TweetTest extends TestCase
      *
      * @return void
      */
-    public function test_listing_tweets()
+    public function test_listing_tweets(): void
     {
         $user = User::factory()->create();
         $user_id = $user->id;
@@ -140,7 +140,7 @@ class TweetTest extends TestCase
      *
      * @return void
      */
-    public function test_getting_page_num()
+    public function test_getting_page_num(): void
     {
         $user_id = 1;
         $user = User::find($user_id);
@@ -162,5 +162,5 @@ class TweetTest extends TestCase
 
         $this->assertSame($expected_page_num, $gotten_page_num);
     }
-    
+
 }
