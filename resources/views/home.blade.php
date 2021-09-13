@@ -21,13 +21,12 @@
 
 <div style="margin-top:50px;"></div>
 
-@for ($i = 1; $i < $page_num ; $i++)
-    <a class="pt-1 page-btn {{ $i==$page ? 'page-btn-active' : ''}}" href="/home/{{ $i }}">
-        {{ $i }}
-    </a>
-@endfor
-<div>
-
+<div style="height:150px;">
+    @for ($i = 1; $i < $page_num ; $i++)
+        <a class="pt-1 page-btn {{ $i==$page ? 'page-btn-active' : ''}}" href="/home/{{ $i }}">
+            {{ $i }}
+        </a>
+    @endfor
 </div>
 
 @endsection

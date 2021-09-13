@@ -55,10 +55,4 @@ class TweetController extends Controller
         ]);
     }
 
-    public function mypage(){
-
-        $me = User::find(Auth::id());
-        return view('mypage', ['me' => $me, 'path' => 'mypage']);
-    }
-
 }
