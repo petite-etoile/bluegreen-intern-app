@@ -28,7 +28,7 @@ class TweetTest extends TestCase
         // ツイートが保存されたか(DBのレコードが増えたか)
         // 期待すること: DBのレコードが1増えている
         $record_num_before = Tweet::count();
-        
+
         $created_tweet = TweetService::create_tweet([
             'tweet_text' => $tweet_text,
             'user_id' => $user_id,
@@ -57,7 +57,7 @@ class TweetTest extends TestCase
         $tweet = Tweet::factory()->create();
         $id = $tweet->id;
         $user_id = $tweet->user_id;
-        
+
         // (他人が削除しようとしたら)
         // ツイートが削除されたか
         // 期待すること: レコードの数が減っていない
