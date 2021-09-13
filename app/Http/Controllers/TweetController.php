@@ -47,14 +47,10 @@ class TweetController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        $tweets_with_name = TweetService::attach_name_to_tweets([
-            'tweets' => $tweets,
-        ]);
-
         return view('home', [
             'page' => $page,
             'path' => 'home',
-            'tweets'=>$tweets_with_name,
+            'tweets'=>$tweets,
             'page_num' => $page_num
         ]);
     }

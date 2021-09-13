@@ -51,7 +51,8 @@ class TweetService{
                 $join->on('tweets.user_id', '=', 'follows.followed_user_id')
                     ->where('follows.following_user_id', '=', $request['user_id']);
             })
-            ->orderBy('id')
+            ->join('users', 'tweets.user_id', '=', 'users.id')
+            ->orderBy('tweets.id')
             ->skip($skip_tweet_cnt)
             ->take(self::GET_MAX_TWEET_NUM)
             ->get();
@@ -73,36 +74,4 @@ class TweetService{
         return ($tweet_count + self::GET_MAX_TWEET_NUM - 1) / self::GET_MAX_TWEET_NUM;
     }
 
-    // 引数
-    //      tweetのオブジェクトを持つ連想配列
-    // 動作
-    //      ホームに表示されるツイートにUserNameを添付して返す
-    public static function attach_name_to_tweets($request){
-        $user_id_list = [];
-        foreach($request['tweets'] as $tweet){
-            $user_id_list[] = $tweet->user_id;
-        }
-
-        $name_dict = [];
-        foreach( DB::table('users')
-            ->whereIn('id', $user_id_list)
-            ->get()
-                as $user){
-            $name_dict[$user->id] = $user->name;
-        }
-
-        $tweets_with_name = [];
-
-        foreach($request['tweets'] as $tweet){
-            $tweets_with_name[] = [
-                'id' => $tweet->id,
-                'user_id' => $tweet->user_id,
-                'tweet_text' => $tweet->tweet_text,
-                'created_at' => $tweet->created_at,
-                'name' => $name_dict[$tweet->user_id],
-            ];
-        }
-
-        return $tweets_with_name;
-    }
 }
