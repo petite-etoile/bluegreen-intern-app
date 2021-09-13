@@ -17,7 +17,7 @@ class TweetTest extends TestCase
      *
      * @return void
      */
-    public function test_saving_tweet()
+    public function test_saving_tweet(): void
     {
         // テスト用データの用意
         $tweet = Tweet::factory()->make();
@@ -50,7 +50,7 @@ class TweetTest extends TestCase
      *
      * @return void
      */
-    public function test_deleting_tweet()
+    public function test_deleting_tweet(): void
     {
 
         // テスト用データの用意
@@ -95,7 +95,7 @@ class TweetTest extends TestCase
             'id' => $id,
         ]);
 
-    }   
+    }
 
     public const GET_MAX_TWEET_NUM = 10; //1ページの表示ツイート数上限
 
@@ -104,7 +104,7 @@ class TweetTest extends TestCase
      *
      * @return void
      */
-    public function test_listing_tweets()
+    public function test_listing_tweets(): void
     {
         $user = User::factory()->create();
         $user_id = $user->id;
@@ -134,5 +134,33 @@ class TweetTest extends TestCase
             $this->assertSame($tweets[$idx + $skip_tweet_cnt]->id, $listed_tweet[$idx]->id);
         }
     }
-    
+
+    /**
+     * A unit test for getting page num.
+     *
+     * @return void
+     */
+    public function test_getting_page_num(): void
+    {
+        $user_id = 1;
+        $user = User::find($user_id);
+
+        $followed_user_list = Follow::where('following_user_id', $user_id) -> get();
+
+        $tweet_num = DB::table('tweets')
+            ->join('follows', function ($join) use ($user_id){
+                $join->on('tweets.user_id', '=', 'follows.followed_user_id')
+                    ->where('follows.following_user_id', '=', $user_id);
+            })
+            ->count();
+
+        $expected_page_num = ($tweet_num + self::GET_MAX_TWEET_NUM - 1) / self::GET_MAX_TWEET_NUM;
+
+        $gotten_page_num = TweetService::get_page_num([
+            'user_id' => $user_id,
+        ]);
+
+        $this->assertSame($expected_page_num, $gotten_page_num);
+    }
+
 }

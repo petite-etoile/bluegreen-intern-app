@@ -16,23 +16,23 @@ class TweetController extends Controller
     //ツイートを作成し, Homeにリダイレクトさせる
     public function add(Request $request){
         $tweet = TweetService::create_tweet([
-            'tweet_text' => $request->tweet_text, 
+            'tweet_text' => $request->tweet_text,
             'user_id' => Auth::id(),
         ]);
 
 
-        return redirect('/home'); 
+        return redirect('/home');
     }
 
     //ツイートを削除し, Homeにリダイレクトさせる
     public function delete(Request $request){
-        
+
         $tweet = TweetService::delete_tweet([
-            'id' => $request->id, 
+            'id' => $request->id,
             'user_id' => Auth::id(),
         ]);
 
-        return redirect('/home'); 
+        return redirect('/home');
     }
 
     //ホームでフォロイーのツイートを表示する
@@ -43,7 +43,16 @@ class TweetController extends Controller
             'page' => $page,
         ]);
 
-        return view('home', ['page' => $page, 'path' => 'home', 'tweets'=>$tweets]); 
+        $page_num = TweetService::get_page_num([
+            'user_id' => Auth::id(),
+        ]);
+
+        return view('home', [
+            'page' => $page,
+            'path' => 'home',
+            'tweets'=>$tweets,
+            'page_num' => $page_num
+        ]);
     }
 
     public function mypage(){

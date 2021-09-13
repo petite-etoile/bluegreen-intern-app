@@ -36,13 +36,41 @@ footer{
 }
 .tweet-cell{
     border: solid black 1px;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top:10px;
 }
 .tweeter{
     cursor: pointer;
+    float: left;
+    text-decoration: underline;
 }
 .tweet-text{
-    
+    font-size: large;
+    text-align: center;
+    width:80%;
+    margin:0 auto;
 }
 .tweet-date{
-    
+    float:right;
+    margin-left: 30px;
+}
+
+.link{
+    text-decoration: underline;
+}
+
+.page-btn{
+    height: 30px;
+    width: 30px;
+    border:solid black 1px;
+    float:left;
+    text-align:center;
+    cursor: pointer;
+}
+
+.page-btn-active{
+    background-color: black;
+    color:white;
+    font:bold;
 }
