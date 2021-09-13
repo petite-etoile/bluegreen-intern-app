@@ -5,9 +5,24 @@
 
 @section('content')
 
-<div>
-    {{ $user->name }}のページ
+<div style="height:30px; padding:0 30px;">
+    <div class="float-left">
+        {{ $user->name }}のページ
+    </div>
+
+    @if ($following)
+        <div class="unfollow-btn">
+            アンフォロー
+        </div>
+    @else
+        <div class="follow-btn">
+            フォロー
+        </div>
+    @endif
 </div>
+
+<div class="clear"></div>
+
 
 <br>
 <div class="tweet-table">
