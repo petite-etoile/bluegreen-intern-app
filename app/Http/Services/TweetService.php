@@ -78,8 +78,16 @@ class TweetService{
     // 動作
     //      ホームに表示されるツイートにUserNameを添付して返す
     public static function attach_name_to_tweets($request){
+        $user_id_list = [];
+        foreach($request['tweets'] as $tweet){
+            $user_id_list[] = $tweet->user_id;
+        }
+
         $name_dict = [];
-        foreach(User::all() as $user){
+        foreach( DB::table('users')
+            ->whereIn('id', $user_id_list)
+            ->get()
+                as $user){
             $name_dict[$user->id] = $user->name;
         }
 
