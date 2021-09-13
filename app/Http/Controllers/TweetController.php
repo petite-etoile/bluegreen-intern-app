@@ -54,10 +54,6 @@ class TweetController extends Controller
         return view('home', ['page' => $page, 'path' => 'home', 'tweets'=>$tweets_with_name, 'page_num' => $page_num]); 
     }
 
-    public function mypage(){
-
-        $me = User::find(Auth::id());
-        return view('mypage', ['me' => $me, 'path' => 'mypage']);
-    }
+    
 
 }
