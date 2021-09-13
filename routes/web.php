@@ -43,13 +43,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/mypage', [UserController::class, 'mypage']);
 
-     Route::get('/user-list', [UserController::class, 'show']);
+    Route::get('/user-list', [UserController::class, 'show']);
 
-     Route::get('/user/{id?}', [UserController::class, 'userpage']);
+    Route::get('/user/{id?}', [UserController::class, 'userpage']);
 
-     Route::post('/follow', [FollowController::class, 'add']);
+    Route::post('/follow', [FollowController::class, 'add']);
 
-     Route::post('/unfollow', [FollowController::class, 'delete']);
+    Route::post('/unfollow', [FollowController::class, 'delete']);
 
 });
 
