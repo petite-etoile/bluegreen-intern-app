@@ -10,7 +10,7 @@
         {{ $user->name }}のページ
     </div>
 
-    @if ($following)
+    @if ($is_following)
         <div class="unfollow-btn">
             アンフォロー
         </div>

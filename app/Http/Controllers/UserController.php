@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function userpage($user_id){
         $user = User::find($user_id);
-        $following = FollowService::is_following([
+        $is_following = FollowService::is_following([
             'following_user_id' => Auth::id(),
             'followed_user_id' => $user_id,
         ]);
@@ -34,7 +34,7 @@ class UserController extends Controller
         return view('user_page', [
             'user' => $user,
             'path' => 'userpage',
-            'following' => $following,
+            'is_following' => $is_following,
         ]);
     }
 
