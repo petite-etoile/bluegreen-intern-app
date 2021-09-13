@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TweetController;
+use App\Http\Controllers\UserController;
+ use App\Http\Controllers\FollowController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +32,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::delete('/delete-form', [TweetController::class, 'delete']);
-    
+
     // ログアウトのトリガーを実装したらこっちを採用
     // Route::get('/dashboard', function () {
     //     return view('dashboard')->name('dashboard');
@@ -39,11 +41,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home/{page?}', [TweetController::class, 'index'] );
 
-    Route::get('/mypage', [TweetController::class, 'mypage']);
-    
-    Route::get('/user-list', function () {
-        return view('user_list', ['path' => 'user-list']);
-    });
+    Route::get('/mypage', [UserController::class, 'mypage']);
+
+     Route::get('/user-list', [UserController::class, 'show']);
+
+     Route::get('/user/{id?}', [UserController::class, 'userpage']);
+
+     Route::post('/follow', [FollowController::class, 'add']);
+
+     Route::post('/unfollow', [FollowController::class, 'delete']);
 
 });
 
