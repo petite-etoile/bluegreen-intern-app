@@ -86,13 +86,13 @@ class TweetService{
         $tweets_with_name = [];
 
         foreach($request['tweets'] as $tweet){
-            array_push($tweets_with_name, [
+            $tweets_with_name[] = [
                 'id' => $tweet->id,
                 'user_id' => $tweet->user_id,
                 'tweet_text' => $tweet->tweet_text,
                 'created_at' => $tweet->created_at,
                 'name' => $name_dict[$tweet->user_id],
-            ]);
+            ];
         }
 
         return $tweets_with_name;
