@@ -4,10 +4,14 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\Models\Tweet;
+use App\Models\User;
+use App\Models\Follow;
 use App\Http\Services\TweetService;
+use Illuminate\Support\Facades\DB;
 
 class TweetTest extends TestCase
 {
+    // use RefreshDatabase;
     /**
      * A unit test for saving tweet.
      *
@@ -92,4 +96,43 @@ class TweetTest extends TestCase
         ]);
 
     }   
+
+    public const GET_MAX_TWEET_NUM = 10; //1ページの表示ツイート数上限
+
+    /**
+     * A unit test for listing tweets.
+     *
+     * @return void
+     */
+    public function test_listing_tweets()
+    {
+        $user = User::factory()->create();
+        $user_id = $user->id;
+
+        Follow::factory()->count(30)->create();
+        Tweet::factory()->count(1000)->create();
+        $followed_user_list = Follow::where('following_user_id', $user_id) -> get();
+
+        $page = 2;
+        $skip_tweet_cnt = self::GET_MAX_TWEET_NUM * ($page - 1); //offsetする数
+
+        $tweets = DB::table('tweets')
+            ->join('follows', function ($join) use ($user_id){
+                $join->on('tweets.user_id', '=', 'follows.followed_user_id')
+                    ->where('follows.following_user_id', '=', $user_id);
+            })
+            ->orderBy('id')
+            ->get();
+
+
+        $listed_tweet = TweetService::get_tweets_at_page([
+            'user_id' => $user_id,
+            'page' => $page,
+        ]);
+
+        for($idx=0; $idx<min(10, count($tweets) - $skip_tweet_cnt); $idx++){
+            $this->assertSame($tweets[$idx + $skip_tweet_cnt]->id, $listed_tweet[$idx]->id);
+        }
+    }
+    
 }

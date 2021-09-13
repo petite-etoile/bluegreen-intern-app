@@ -23,23 +23,23 @@ Route::middleware('auth')->group(function () {
         return view('tweet_form', ['path' => 'tweet-form']);
     });
 
-    Route::post('/tweet-form', [TweetController::class, "add"]);
+    Route::post('/tweet-form', [TweetController::class, 'add']);
 
     Route::get('/delete-form', function () {
         return view('delete_form');
     });
 
-    Route::delete('/delete-form', [TweetController::class, "delete"]);
+    Route::delete('/delete-form', [TweetController::class, 'delete']);
     
-    Route::get('/dashboard', function () {
-        return redirect('/home/1');
-    });
+    // ログアウトのトリガーを実装したらこっちを採用
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard')->name('dashboard');
+    //     // return redirect('/home/1');
+    // });
 
-    Route::get('/home/{page?}', [TweetController::class, "index"] );
+    Route::get('/home/{page?}', [TweetController::class, 'index'] );
 
-    Route::get('/mypage', function () {
-        return view('mypage', ['path' => 'mypage']);
-    });
+    Route::get('/mypage', [TweetController::class, 'mypage']);
     
     Route::get('/user-list', function () {
         return view('user_list', ['path' => 'user-list']);
@@ -47,7 +47,10 @@ Route::middleware('auth')->group(function () {
 
 });
 
-
+// ログアウトのトリガーを実装するまで残す
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 
 require __DIR__.'/auth.php';

@@ -30,3 +30,19 @@ footer{
 .float-left{
     float:left;
 }
+
+.tweet-table{
+
+}
+.tweet-cell{
+    border: solid black 1px;
+}
+.tweeter{
+    cursor: pointer;
+}
+.tweet-text{
+    
+}
+.tweet-date{
+    
+}
