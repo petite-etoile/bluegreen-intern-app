@@ -27,18 +27,28 @@ class UserController extends Controller
         return view('user_page', ['user' => $user, 'path' => 'userpage']);
     }
 
-    public function edit_name(){
-        //ここで編集処理
+    public function edit_name(Request $request){
+        UserService::edit_name([
+            'user_id' => Auth::id(),
+            'name' => $request->name
+        ]);
+
         return redirect(url()->previous());
     }
 
-    public function edit_email(){
-        //ここで編集処理
+    public function edit_email(Request $request){
+        UserService::edit_email([
+            'user_id' => Auth::id(),
+            'email' => $request->email
+        ]);
         return redirect(url()->previous());
     }
 
-    public function edit_introduction(){
-        //ここで編集処理
+    public function edit_introduction(Request $request){
+        UserService::edit_introduction([
+            'user_id' => Auth::id(),
+            'introduction' => $request->introduction
+        ]);
         return redirect(url()->previous());
     }
 

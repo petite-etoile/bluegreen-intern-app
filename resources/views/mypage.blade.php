@@ -20,7 +20,7 @@
                 @csrf
                 @method('PATCH')
                 <td>
-                    <input name="id" value="{{ $me->name }}" class="form-cell"></input>
+                    <input name="name" value="{{ $me->name }}" class="form-cell"></input>
                 </td>
                 <td><button class="btn text-primary" style="width:100%;">更新</button></td>
             </form>
@@ -31,7 +31,7 @@
                 @csrf
                 @method('PATCH')
                 <td>
-                    <input name="id" value="{{ $me->email }}" class="form-cell"></input>
+                    <input name="email" value="{{ $me->email }}" class="form-cell"></input>
                 </td>
                 <td><button class="btn text-primary" style="width:100%;">更新</button></td>
             </form>
@@ -42,7 +42,7 @@
                 @csrf
                 @method('PATCH')
                 <td>
-                    <textarea name="id" rows="3" style="font-size:large !important;" class="form-cell">{{ $me->introduction }}</textarea>
+                    <textarea name="introduction" rows="3" style="font-size:large !important;" class="form-cell">{{ $me->introduction }}</textarea>
                 </td>
                 <td><button class="btn text-primary" style="width:100%;">更新</button></td>
             </form>
