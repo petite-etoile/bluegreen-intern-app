@@ -11,13 +11,17 @@
     </div>
 
     @if ($following)
-        <div class="unfollow-btn">
-            アンフォロー
-        </div>
+        <form action="/unfollow" method="POST">
+            @csrf
+            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <button class="unfollow-btn"> アンフォロー </button>
+        </form>
     @else
-        <div class="follow-btn">
-            フォロー
-        </div>
+        <form action="/follow" method="POST">
+            @csrf
+            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <button class="follow-btn"> フォロー </button>
+        </form>
     @endif
 </div>
 
