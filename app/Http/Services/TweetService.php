@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class TweetService{
 
-    // 引数
-    //      tweet_textとuser_idをもつ連想配列
-    // 動作
-    //      user_idのツイートとしてtweet_textをDBに保存する
-    public static function create_tweet($request){
+    /**
+     *  user_idのツイートとしてtweet_textをDBに保存する
+     *
+     *  @param array $request tweet_textとuser_idをもつ連想配列
+     *  @return object 作成したツイート
+     */
+    public static function create_tweet(array $request):object
+    {
         $tweet = Tweet::create([
             'tweet_text' => $request['tweet_text'],
             'user_id' => $request['user_id'],
@@ -22,11 +25,14 @@ class TweetService{
         return $tweet;
     }
 
-    // 引数
-    //      id(tweet_id)とuser_idをもつ連想配列
-    // 動作
-    //      ツイートがuser_idのものなら, DBから削除する
-    public static function delete_tweet($request){
+    /**
+     *  ツイートがuser_idのものなら, DBから削除する.
+     *
+     *  @param array $request idとuser_idをもつ連想配列
+     *  @return object 削除したツイート
+     */
+    public static function delete_tweet(array $request):object
+    {
         $tweet = Tweet::find($request['id']);
         if($tweet && $tweet->user_id==$request['user_id']){
             $tweet->delete();
@@ -35,15 +41,19 @@ class TweetService{
         return $tweet;
     }
 
-    // 引数
-    //      user_idとpageをもつ連想配列
-    // 動作
-    //      このpageを表示するツイートを新しい順の配列で返す.
-    //      表示するツイート
-    //          - user_idがフォローしているユーザのツイート
     public const GET_MAX_TWEET_NUM = 10; //1ページの表示ツイート数上限
 
-    public static function get_tweets_at_page($request){
+    /**
+     *  このpageを表示するツイートを新しい順の配列で返す.
+     *
+     *  表示するツイート
+     *       - user_idがフォローしているユーザのツイート
+     *
+     *  @param array $request user_idとpageをもつ連想配列
+     *  @return object フォロイーのツイート(ツイーターの名前をつけて)
+     */
+    public static function get_tweets_at_page(array $request):object
+    {
         $skip_tweet_cnt = self::GET_MAX_TWEET_NUM * ($request['page'] - 1); //offsetする数
 
         return $tweets = DB::table('tweets')
@@ -59,11 +69,17 @@ class TweetService{
 
     }
 
-    // 引数
-    //      user_idとpageをもつ連想配列
-    // 動作
-    //      ホームに表示されるツイートが何ページ数に分かれるか
-    public static function get_page_num($request){
+    /**
+     *  ホームに表示されるツイートが何ページ数に分かれるかを求める.
+     *
+     *  表示するツイート
+     *       - user_idがフォローしているユーザのツイート
+     *
+     *  @param array $request user_idをもつ連想配列
+     *  @return integer ホームに表示されるページ総数
+     */
+    public static function get_page_num(array $request):integer
+    {
         $tweet_count = DB::table('tweets')
             ->join('follows', function ($join) use ($request){
                 $join->on('tweets.user_id', '=', 'follows.followed_user_id')

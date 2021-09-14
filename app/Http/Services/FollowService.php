@@ -10,11 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class FollowService{
 
-    // 引数
-    //      following_user_idとfollowed_user_idを持つ連想配列
-    // 動作
-    //      following_user_id が followed_user_id をフォローしているかを返す(boolean)
-    public static function is_following($request){
+    /**
+     *  following_user_id が followed_user_id をフォローしているかを返す
+     *
+     *  表示するツイート
+     *       - user_idがフォローしているユーザのツイート
+     *
+     *  @param array following_user_idとfollowed_user_idを持つ連想配列
+     *  @return boolean following_user_id が followed_user_id をフォローしているか
+     */
+    public static function is_following($request):boolean
+    {
         $record_cnt = DB::table('follows')
         ->where([
             ['following_user_id', '=', $request['following_user_id']],
