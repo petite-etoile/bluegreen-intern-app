@@ -48,4 +48,53 @@ class FollowTest extends TestCase
             'followed_user_id' => $followed_user_id,
         ]));
     }
+
+    /**
+     * A unit test for folloing
+     *
+     * @return void
+     */
+    public function test_following(): void
+    {
+
+        // テスト用データの用意
+        $follow = Follow::factory()->make();
+        $following_user_id = $follow->following_user_id;
+        $followed_user_id = $follow->followed_user_id;
+
+        $record_num_before = Follow::count();
+
+        FollowService::follow([
+            'following_user_id' => $following_user_id,
+            'followed_user_id' => $followed_user_id,
+        ]);
+
+        $record_num_after = Follow::count();
+        $this->assertSame($record_num_before + 1, $record_num_after);
+    }
+
+    /**
+     * A unit test for unfolloing
+     *
+     * @return void
+     */
+    public function test_unfollowing(): void
+    {
+
+        // テスト用データの用意
+        $follow = Follow::factory()->create();
+        $following_user_id = $follow->following_user_id;
+        $followed_user_id = $follow->followed_user_id;
+
+        $record_num_before = Follow::count();
+
+        FollowService::unfollow([
+            'following_user_id' => $following_user_id,
+            'followed_user_id' => $followed_user_id,
+        ]);
+
+        $record_num_after = Follow::count();
+        $this->assertSame($record_num_before - 1, $record_num_after);
+    }
+
 }
