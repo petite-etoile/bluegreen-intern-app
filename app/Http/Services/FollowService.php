@@ -55,6 +55,4 @@ class FollowService{
             ->delete();
     }
 
-
-
 }
