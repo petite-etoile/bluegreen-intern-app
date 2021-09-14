@@ -27,4 +27,19 @@ class UserController extends Controller
         return view('user_page', ['user' => $user, 'path' => 'userpage']);
     }
 
+    public function edit_name(){
+        //ここで編集処理
+        return redirect(url()->previous());
+    }
+
+    public function edit_email(){
+        //ここで編集処理
+        return redirect(url()->previous());
+    }
+
+    public function edit_introduction(){
+        //ここで編集処理
+        return redirect(url()->previous());
+    }
+
 }

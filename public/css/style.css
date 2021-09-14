@@ -93,3 +93,9 @@ footer{
     background-color:pink;
     border-left:solid red 1px;
 }
+
+.form-cell{
+    text-align:center;
+    font-size:x-large;
+    width:100%;
+}
