@@ -43,11 +43,11 @@ class FollowService{
      *  following_user_id が followed_user_id をフォローしているレコードを削除
      *
      *  @param array $request following_user_idとfollowed_user_idを持つ連想配列
-     *  @return object 削除したレコード
+     *  @return void
      */
-    public static function unfollow(array $request):object
+    public static function unfollow(array $request):void
     {
-        return DB::table('follows')
+        DB::table('follows')
             ->where([
                 ['following_user_id', '=', $request['following_user_id']],
                 ['followed_user_id', '=', $request['followed_user_id']]

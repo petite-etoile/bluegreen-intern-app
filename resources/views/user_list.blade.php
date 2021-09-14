@@ -16,10 +16,19 @@
         @endif
         <div class="user-cell">
             <a class="user-name" href="/user/{{ $user->id }}">{{ $user->name }}</a>
-            <form action="/follow" method="POST">
-                @csrf
-                <button class="follow-btn"> フォロー </button>
-            </form>
+            @if (is_null($user->followed_user_id))
+                <form action="/follow" method="POST">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <button class="follow-btn"> フォロー </button>
+                </form>
+            @else
+                <form action="/unfollow" method="POST">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <button class="unfollow-btn"> アンフォロー </button>
+                </form>
+            @endif
         </div>
     @endforeach
 </div>
