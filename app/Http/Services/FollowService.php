@@ -13,9 +13,6 @@ class FollowService{
     /**
      *  following_user_id が followed_user_id をフォローしているかを返す
      *
-     *  表示するツイート
-     *       - user_idがフォローしているユーザのツイート
-     *
      *  @param array following_user_idとfollowed_user_idを持つ連想配列
      *  @return boolean following_user_id が followed_user_id をフォローしているか
      */
