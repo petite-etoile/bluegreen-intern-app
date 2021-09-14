@@ -65,6 +65,7 @@ class TweetService{
             ->orderBy('tweets.id')
             ->skip($skip_tweet_cnt)
             ->take(self::GET_MAX_TWEET_NUM)
+            ->select('tweets.id', 'tweets.tweet_text','tweets.user_id','users.name','tweets.created_at')
             ->get();
 
     }
