@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Services\UserService;
+use App\Http\Services\FollowService;
+
 
 class UserController extends Controller
 {
@@ -24,7 +26,16 @@ class UserController extends Controller
 
     public function userpage($user_id){
         $user = User::find($user_id);
-        return view('user_page', ['user' => $user, 'path' => 'userpage']);
+        $is_following = FollowService::is_following([
+            'following_user_id' => Auth::id(),
+            'followed_user_id' => $user_id,
+        ]);
+
+        return view('user_page', [
+            'user' => $user,
+            'path' => 'userpage',
+            'is_following' => $is_following,
+        ]);
     }
 
 }

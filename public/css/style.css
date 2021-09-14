@@ -91,5 +91,10 @@ footer{
     float:right;
     height:100%;
     background-color:pink;
-    border-left:solid red 1px;
+}
+
+.unfollow-btn{
+    float:right;
+    height:100%;
+    background-color:palevioletred;
 }
