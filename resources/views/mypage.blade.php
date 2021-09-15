@@ -37,8 +37,8 @@
             </tr>
         </tbody>
     </table>
+    <button class="btn btn-primary w-25 float-right" style="width:100%;">更新</button>
 </form>
-<button class="btn btn-primary w-25 float-right" style="width:100%;">更新</button>
 
 <div style="height:100px;"></div>
 
