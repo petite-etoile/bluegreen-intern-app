@@ -38,4 +38,15 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit_user_info(Request $request){
+        UserService::edit_name([
+            'user_id' => Auth::id(),
+            'name' => $request->name,
+            'email' => $request->email,
+            'introduction' => $request->introduction
+        ]);
+
+        return redirect(url()->previous());
+    }
+
 }

@@ -93,6 +93,12 @@ footer{
     background-color:pink;
 }
 
+.form-cell{
+    text-align:center;
+    font-size:x-large;
+    width:100%;
+}
+
 .unfollow-btn{
     float:right;
     height:100%;
