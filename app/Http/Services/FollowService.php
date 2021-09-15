@@ -14,9 +14,9 @@ class FollowService{
      *  following_user_id が followed_user_id をフォローしているかを返す
      *
      *  @param array following_user_idとfollowed_user_idを持つ連想配列
-     *  @return boolean following_user_id が followed_user_id をフォローしているか
+     *  @return bool following_user_id が followed_user_id をフォローしているか
      */
-    public static function is_following(array $request):boolean
+    public static function is_following(array $request):bool
     {
         $record_cnt = DB::table('follows')
         ->where([

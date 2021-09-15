@@ -49,4 +49,9 @@ class UserController extends Controller
         return redirect(url()->previous());
     }
 
+    public function delete(){
+        $users = UserService::delete_user(Auth::id());
+        return redirect('/');
+    }
+
 }

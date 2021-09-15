@@ -63,7 +63,7 @@ class TweetTest extends TestCase
         // 期待すること: レコードの数が減っていない
         $record_num_before = Tweet::count();
 
-        $deleted_tweet = TweetService::delete_tweet([
+        TweetService::delete_tweet([
             'id' => $id,
             'user_id' => $user_id+1,
         ]);
@@ -76,19 +76,13 @@ class TweetTest extends TestCase
         // 期待すること: レコードの数が1減っている
         $record_num_before = Tweet::count();
 
-        $deleted_tweet = TweetService::delete_tweet([
+        TweetService::delete_tweet([
             'id' => $id,
             'user_id' => $user_id,
         ]);
 
         $record_num_after = Tweet::count();
         $this->assertSame($record_num_before - 1, $record_num_after);
-
-        // 正しいデータが削除されたか
-        // 期待すること: 削除したツイートのIDが, DBに存在しない
-        $this->assertSame(Tweet::find( $deleted_tweet->id ), null);
-
-
 
         // 指定したIDが存在しなかったときに, エラーを吐かずに動作するか
         $deleted_tweet = TweetService::delete_tweet([
@@ -154,7 +148,7 @@ class TweetTest extends TestCase
             })
             ->count();
 
-        $expected_page_num = ($tweet_num + self::GET_MAX_TWEET_NUM - 1) / self::GET_MAX_TWEET_NUM;
+        $expected_page_num = (int)(($tweet_num + self::GET_MAX_TWEET_NUM - 1) / self::GET_MAX_TWEET_NUM);
 
         $gotten_page_num = TweetService::get_page_num([
             'user_id' => $user_id,
