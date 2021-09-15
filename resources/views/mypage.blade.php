@@ -5,10 +5,18 @@
 
 @section('content')
 
-<h3 style="height:30px; margin-bottom:30px;">
+<h3 style="height:30px; float:left;">
     Mypage
 </h3>
 
+<form action="/delete-me" method="POST" style="float-right">
+    @csrf
+    <input type="hidden" name="_method" value="DELETE"> <!-- for setting method DELETE -->
+    <br>
+    <button class="btn btn-danger float-right clear"> アカウントを削除 </button>
+</form>
+
+<div style="height:50px;"></div>
 
 ユーザ情報
 <form action="/edit-user-info" method="POST">
@@ -43,11 +51,15 @@
 <div style="height:100px;"></div>
 
 
-<form action="/delete-me" method="POST">
-    @csrf
-    <input type="hidden" name="_method" value="DELETE"> <!-- for setting method DELETE -->
-    <br>
-    <button class="btn btn-danger float-right clear"> アカウントを削除 </button>
-</form>
+<div class="tweet-table">
+    @forelse ($me->tweets as $tweet)
+        <div class="tweet-cell">
+            <div class="tweet-date">{{ $tweet->created_at }}</div>
+            <div class="tweet-text clear">{{ $tweet->tweet_text }}</div>
+        </div>
+    @empty
+        <p style="margin-top:50px; font-size:30px;"> まだツイートがありません. </p>
+    @endforelse
+</div class="tweet-table">
 
 @endsection
