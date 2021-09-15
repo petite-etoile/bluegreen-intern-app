@@ -34,7 +34,8 @@ class UserService{
      *  @param array user_idとnameを持つ連想配列
      *  @return void
      */
-    public static function edit_user_info($request){
+    public static function edit_user_info($request):void
+    {
         $user = User::find($request['user_id']);
         $user->name = $request['name'];
         $user->email = $request['email'];
@@ -42,4 +43,14 @@ class UserService{
         $user->save();
     }
 
+    /**
+     *  ユーザ名, メールアドレス, 自己紹介文を変更する
+     *
+     *  @param integer user_id 削除するユーザのID
+     *  @return void
+     */
+    public static function delete_user($user_id):void
+    {
+        User::find($user_id)->delete();
+    }
 }

@@ -46,7 +46,6 @@
 <form action="/delete-me" method="POST">
     @csrf
     <input type="hidden" name="_method" value="DELETE"> <!-- for setting method DELETE -->
-    <br>
     <button class="btn btn-danger float-right clear"> アカウントを削除 </button>
 </form>
 

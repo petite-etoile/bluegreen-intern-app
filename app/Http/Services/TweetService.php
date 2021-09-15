@@ -77,9 +77,9 @@ class TweetService{
      *       - user_idがフォローしているユーザのツイート
      *
      *  @param array $request user_idをもつ連想配列
-     *  @return integer ホームに表示されるページ総数
+     *  @return int ホームに表示されるページ総数
      */
-    public static function get_page_num(array $request):integer
+    public static function get_page_num(array $request):int
     {
         $tweet_count = DB::table('tweets')
             ->join('follows', function ($join) use ($request){
@@ -88,7 +88,7 @@ class TweetService{
             })
             ->count();
 
-        return ($tweet_count + self::GET_MAX_TWEET_NUM - 1) / self::GET_MAX_TWEET_NUM;
+        return (int)(($tweet_count + self::GET_MAX_TWEET_NUM - 1) / self::GET_MAX_TWEET_NUM);
     }
 
 }
