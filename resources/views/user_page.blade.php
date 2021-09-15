@@ -10,7 +10,7 @@
         {{ $user->name }}のページ
     </div>
 
-    @if ($following)
+    @if ($is_following === true)
         <form action="/unfollow" method="POST">
             @csrf
             <input type="hidden" name="user_id" value="{{ $user->id }}">

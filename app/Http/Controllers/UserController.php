@@ -20,7 +20,7 @@ class UserController extends Controller
     }
 
     public function show(){
-        $users = User::all();
+        $users = UserService::get_follow_users(Auth::id());
         return view('user_list', ['path' => 'user-list', 'users' => $users]);
     }
 
