@@ -26,7 +26,7 @@ bash:
 	./vendor/bin/sail bash
 
 src/vendor:
-	./vendor/bin/sail composer install --no-progress --no-suggest
+	./vendor/bin/sail php composer install --no-progress --no-suggest
 
 src/.env:
 	@cp .env.example .env

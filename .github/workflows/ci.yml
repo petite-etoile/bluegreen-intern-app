@@ -24,9 +24,11 @@ jobs:
       - name: Code Style Check PSR-12
         run: |
           make cs
+
       - name: PHP Analys
         run: |
           make stan
+
       - name: UnitTest
         run: |
           make test
