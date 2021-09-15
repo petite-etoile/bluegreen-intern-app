@@ -33,11 +33,9 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/delete-form', [TweetController::class, 'delete']);
 
-    // ログアウトのトリガーを実装したらこっちを採用
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard')->name('dashboard');
-    //     // return redirect('/home/1');
-    // });
+    Route::get('/dashboard', function () {
+        return redirect('/home');
+    });
 
     Route::get('/home/{page?}', [TweetController::class, 'index'] );
 
@@ -51,13 +49,12 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/unfollow', [FollowController::class, 'delete']);
 
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
+  
     Route::patch('/edit-user-info', [UserController::class, 'edit_user_info']);
-});
 
-// ログアウトのトリガーを実装するまで残す
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+});
 
 
 require __DIR__.'/auth.php';

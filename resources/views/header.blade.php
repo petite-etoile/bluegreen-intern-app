@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div style="width:30px; float:left;"> </div>
-    <a href="/home" class="navbar-brand mb-0 h1 ml-3"> サービス名</a> 
+    <a href="/home" class="navbar-brand mb-0 h1 ml-3"> サービス名</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="true" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button> 
+    </button>
 
 
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -22,5 +22,14 @@
             </li>
         </ul>
     </div>
-    
+    <form method="POST" action="{{ route('logout') }}" style="width:100px;" class="mt-2">
+        @csrf
+        <x-responsive-nav-link :href="route('logout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();">
+            ログアウト
+        </x-responsive-nav-link>
+    </form>
+
+
 </nav>
