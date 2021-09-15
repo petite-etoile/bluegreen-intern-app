@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class UserService{
 
     /**
-     *  ユーザ情報にフォローしているかのフラグをつけて返す
+     *  ユーザ情報にフォローしているかの情報をつけて返す
      *
      *  フォローしてない場合, followed_user_id をnullにする.
      *
