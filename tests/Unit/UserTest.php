@@ -21,7 +21,7 @@ class UserTest extends TestCase
         Follow::factory()->count(30)->create();
         $following_user_id = $follow->following_user_id;
 
-        $users = UserService::users_with_follow_info($following_user_id);
+        $users = UserService::get_follow_users($following_user_id);
 
         foreach($users as $user){
             $followed_user_id = $user->id;

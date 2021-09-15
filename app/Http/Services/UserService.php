@@ -16,7 +16,7 @@ class UserService{
      *  @param integer user_id
      *  @return object  ユーザ情報(id, name)にfollowed_user_idをつけて返す
      */
-    public static function users_with_follow_info($user_id):object
+    public static function get_follow_users($user_id):object
     {
         return DB::table('users')
         ->leftjoin('follows', function ($join) use ($user_id){
