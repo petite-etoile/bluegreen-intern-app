@@ -32,7 +32,7 @@
 <div class="tweet-table">
     @forelse ($user->tweets as $tweet)
         <div class="tweet-cell">
-            <a href="/user/{{ $tweet->user_id }}" class="tweeter">{{ $tweet->name }}</a>
+            <a href="/user/{{ $tweet->user_id }}" class="tweeter">{{ $user->name }}</a>
             <div class="tweet-date">{{ $tweet->created_at }}</div>
             <div class="tweet-text clear">{{ $tweet->tweet_text }}</div>
         </div>

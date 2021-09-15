@@ -24,7 +24,7 @@ class TweetController extends Controller
         return redirect('/home');
     }
 
-    //ツイートを削除し, Homeにリダイレクトさせる
+    //ツイートを削除し, 前いたURLに
     public function delete(Request $request){
 
         $tweet = TweetService::delete_tweet([
@@ -32,7 +32,7 @@ class TweetController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        return redirect('/home');
+        return redirect(url()->previous());
     }
 
     //ホームでフォロイーのツイートを表示する

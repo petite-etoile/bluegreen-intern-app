@@ -103,4 +103,12 @@ footer{
     float:right;
     height:100%;
     background-color:palevioletred;
+    color:white;
+}
+
+.tweet-delete-btn{
+    float:right;
+    width:10%;
+    border:solid black 1px;
+    margin-bottom: 5px;;
 }

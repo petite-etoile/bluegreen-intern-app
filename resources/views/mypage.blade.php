@@ -54,8 +54,16 @@
 <div class="tweet-table">
     @forelse ($me->tweets as $tweet)
         <div class="tweet-cell">
+            <a href="/user/{{ $tweet->user_id }}" class="tweeter">{{ $me->name }}</a>
             <div class="tweet-date">{{ $tweet->created_at }}</div>
             <div class="tweet-text clear">{{ $tweet->tweet_text }}</div>
+            <form action="/delete-form" method="POST" style="float-right">
+                @csrf
+                <input type="hidden" name="_method" value="DELETE"> <!-- for setting method DELETE -->
+                <input type="hidden" name="id" value="{{ $tweet->id }}">
+                <button class="tweet-delete-btn btn btn-sm btn-danger"> 削除 </button>
+            </form>
+            <div class="clear"></div>
         </div>
     @empty
         <p style="margin-top:50px; font-size:30px;"> まだツイートがありません. </p>
