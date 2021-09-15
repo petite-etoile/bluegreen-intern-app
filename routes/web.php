@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/unfollow', [FollowController::class, 'delete']);
 
+    Route::patch('/edit-user-info', [UserController::class, 'edit_user_info']);
 });
 
 // ログアウトのトリガーを実装するまで残す
