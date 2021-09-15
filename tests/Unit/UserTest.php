@@ -62,4 +62,22 @@ class UserTest extends TestCase
         $this->assertSame($user->introduction, $new_introduction);
     }
 
+    /**
+     * A unit test for deleting user.
+     *
+     * @return void
+     */
+    public function test_deleting_user(): void
+    {
+        $user = User::factory()->create();
+        $id = $user->id;
+
+        $record_num_before = User::count();
+
+        UserService::delete_user($id);
+
+        $record_num_after = User::count();
+
+        $this->assertSame($record_num_before - 1, $record_num_after);
+    }
 }
