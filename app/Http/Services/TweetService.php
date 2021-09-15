@@ -29,16 +29,14 @@ class TweetService{
      *  ツイートがuser_idのものなら, DBから削除する.
      *
      *  @param array $request idとuser_idをもつ連想配列
-     *  @return object 削除したツイート
+     *  @return void 削除したツイート
      */
-    public static function delete_tweet(array $request):object
+    public static function delete_tweet(array $request):void
     {
         $tweet = Tweet::find($request['id']);
         if($tweet && $tweet->user_id==$request['user_id']){
             $tweet->delete();
         }
-
-        return $tweet;
     }
 
     public const GET_MAX_TWEET_NUM = 10; //1ページの表示ツイート数上限
