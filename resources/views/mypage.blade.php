@@ -15,6 +15,9 @@
     <button class="btn btn-danger float-right clear"> アカウントを削除 </button>
 </form>
 
+<a href="/edit-password" class="btn btn-warning float-right  mr-2" > パスワードを変更 </a>
+
+
 <div style="height:50px;"></div>
 
 ユーザ情報

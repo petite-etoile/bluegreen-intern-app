@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Services\UserService;
 use App\Http\Services\FollowService;
-
+use App\Http\Requests\UpdatePasswordRequest;
 
 class UserController extends Controller
 {
@@ -24,7 +24,7 @@ class UserController extends Controller
         return view('user_list', ['path' => 'user-list', 'users' => $users]);
     }
 
-    public function userpage($user_id){
+    public function find($user_id){
         $user = User::find($user_id);
         $is_following = FollowService::is_following([
             'following_user_id' => Auth::id(),
@@ -47,6 +47,18 @@ class UserController extends Controller
         ]);
 
         return redirect(url()->previous());
+    }
+
+    public function edit_password(){
+        return view('edit-password', ['path' => 'edit-password']);
+    }
+
+    public function update_password(UpdatePasswordRequest $request){
+        $user = Auth::user();
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return redirect()->back()->with('update_password_success', 'パスワードを変更しました。');
     }
 
     public function delete(){

@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user-list', [UserController::class, 'show']);
 
-    Route::get('/user/{id?}', [UserController::class, 'userpage']);
+    Route::get('/user/{id?}', [UserController::class, 'find']);
 
     Route::post('/follow', [FollowController::class, 'add']);
 
@@ -55,6 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/edit-user-info', [UserController::class, 'edit_user_info']);
 
     Route::delete('/delete-me', [UserController::class, 'delete']);
+
+    Route::get('/edit-password', [UserController::class, 'edit_password']);
+
+    Route::post('/user/password/', [UserController::class, 'update_password'])->name('update-password');
 });
 
 
