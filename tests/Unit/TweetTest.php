@@ -115,7 +115,7 @@ class TweetTest extends TestCase
                 $join->on('tweets.user_id', '=', 'follows.followed_user_id')
                     ->where('follows.following_user_id', '=', $user_id);
             })
-            ->orderBy('id')
+            ->orderBy('id','desc')
             ->get();
 
 
