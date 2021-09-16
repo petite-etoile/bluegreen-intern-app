@@ -30,7 +30,7 @@
 
 <br>
 <div class="tweet-table">
-    @forelse ($user->tweets()->orderBy('id', 'desc')->get() as $tweet)
+    @forelse ($user->tweets()->orderBy('created_at', 'desc')->get() as $tweet)
         <div class="tweet-cell">
             <a href="/user/{{ $tweet->user_id }}" class="tweeter">{{ $user->name }}</a>
             <div class="tweet-date">{{ $tweet->created_at }}</div>
