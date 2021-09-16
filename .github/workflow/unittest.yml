@@ -2,6 +2,7 @@ name: UnitTest
 
 on:
   push:
+    branches: [ ci ]
 jobs:
   build:
     runs-on: ubuntu-latest
