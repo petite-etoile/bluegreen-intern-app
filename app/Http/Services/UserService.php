@@ -53,4 +53,11 @@ class UserService{
     {
         User::find($user_id)->delete();
     }
+
+    public static function update_password($request):void
+    {
+        $user = User::find($request['user_id']);
+        $user->password = bcrypt($request['new_password']);
+        $user->save();
+    }
 }

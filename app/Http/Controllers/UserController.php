@@ -54,9 +54,10 @@ class UserController extends Controller
     }
 
     public function update_password(UpdatePasswordRequest $request){
-        $user = Auth::user();
-        $user->password = bcrypt($request->new_password);
-        $user->save();
+        UserService::update_password([
+            'user_id' => Auth::id(),
+            'new_password' => $request->new_password
+        ]);
 
         return redirect()->back()->with('update_password_success', 'パスワードを変更しました。');
     }
