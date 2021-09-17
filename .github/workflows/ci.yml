@@ -23,8 +23,14 @@ jobs:
           laravelsail/php80-composer:latest \
           composer install --ignore-platform-reqs
 
-    - name: start project
+    - name: cp env
+      run : .env.example .env
+
+    - name: init project
       run : ./vendor/bin/sail up -d
+
+    - name: generate key
+      run : docker-compose exec -T laravel.test php artisan key:generate
 
     - name: exec test
       run : docker-compose exec -T laravel.test php artisan test
