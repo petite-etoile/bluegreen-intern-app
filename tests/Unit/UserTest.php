@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Follow;
 use App\Http\Services\UserService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UserTest extends TestCase
 {
@@ -79,5 +81,26 @@ class UserTest extends TestCase
         $record_num_after = User::count();
 
         $this->assertSame($record_num_before - 1, $record_num_after);
+    }
+
+    /**
+     * A unit test for updating password
+     *
+     * @return void
+     */
+    public function test_update_password(): void
+    {
+        $user = User::factory()->create();
+        $user_id = $user->id;
+
+        $new_password = Str::random(10);
+
+        UserService::update_password([
+            'user_id' => $user_id,
+            'new_password' => $new_password,
+        ]);
+
+        $user = User::find($user_id);
+        $this->assertTrue(Hash::check($new_password, $user->password));
     }
 }
