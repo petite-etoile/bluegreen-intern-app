@@ -24,7 +24,7 @@ jobs:
           composer install --ignore-platform-reqs
 
     - name: cp env
-      run : .env.example .env
+      run : cp .env.example .env
 
     - name: init project
       run : ./vendor/bin/sail up -d
