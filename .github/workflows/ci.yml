@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ feature/add_githubaction_ci ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  laravel-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: composer install
+      run : |
+        docker run --rm \
+          -u "$(id -u):$(id -g)" \
+          -v $(pwd):/var/www/html \
+          -w /var/www/html \
+          laravelsail/php80-composer:latest \
+          composer install --ignore-platform-reqs
+
+    - name: cp env
+      run : cp .env.example .env
+
+    - name: init project
+      run : ./vendor/bin/sail up -d
+
+    - name: generate key
+      run : docker-compose exec -T laravel.test php artisan key:generate
+
+    - name: exec test
+      run : docker-compose exec -T laravel.test php artisan test
