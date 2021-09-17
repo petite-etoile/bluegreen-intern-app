@@ -60,7 +60,8 @@ class TweetService{
                     ->where('follows.following_user_id', '=', $request['user_id']);
             })
             ->join('users', 'tweets.user_id', '=', 'users.id')
-            ->orderBy('tweets.id')
+            ->orderBy('tweets.created_at', 'desc')
+            ->orderBy('tweets.id', 'desc')
             ->skip($skip_tweet_cnt)
             ->take(self::GET_MAX_TWEET_NUM)
             ->select('tweets.id', 'tweets.tweet_text','tweets.user_id','users.name','tweets.created_at')
