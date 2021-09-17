@@ -34,7 +34,7 @@ class UpdatePasswordRequest extends FormRequest
                     }
                 },
             ],
-            'new_password' => 'required|string|min:8|confirmed|different:current_password',
+            'new_password' => 'required|string|min:8|confirmed|different:current_password|max:200',
         ];
     }
 }
